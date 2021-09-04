@@ -1,5 +1,5 @@
 import yaml
-from command import Command
+from command import Command, CommandSet
 
 
 def parse_commands(path: str):
@@ -10,9 +10,4 @@ def parse_commands(path: str):
     for k, v in comm_dict["commands"].items():
         commands.append(Command(id=k, command=v["command"], tags=v["tags"]))
 
-    return commands
-
-
-if __name__ == "__main__":
-    tmp = parse_commands("resources/commands.yaml")
-    breakpoint()
+    return CommandSet(commands)

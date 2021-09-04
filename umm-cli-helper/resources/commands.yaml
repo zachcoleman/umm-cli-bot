@@ -3,3 +3,14 @@ commands:
     command: ["pwd"]
     tags: ["work", "dir"]
     freq: 0
+    prompts: []
+  c7bf17a9-6fd1-4a3b-9fb6-ee166deed9bd:
+    command: ["which python"]
+    tags: ["where", "python"]
+    freq: 0
+    prompts: []
+  354766df-e4ab-4293-b9dc-b1dd48236bf9:
+    command: ["python -m pip install --upgrade $1"]
+    tags: ["python", "pip", "update"]
+    freq: 0
+    prompts: ["package name"]
