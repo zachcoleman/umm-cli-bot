@@ -1,0 +1,4 @@
+commands:
+  20107b09-741b-4216-823e-82237129b34c:
+    command: ["pwd"]
+    tags: ["work", "dir"]
