@@ -3,8 +3,6 @@ import os
 import yaml
 from pydantic import BaseModel
 
-# TODO: switch to using pydantic for validating parsing
-
 
 class Config(BaseModel):
     port: int

@@ -2,8 +2,6 @@ from typing import List
 
 from umm.server.command import Command
 
-# TODO: switch to using pydantic model for this
-
 
 class CommandSet:
     def __init__(self, commands: List[Command]):
