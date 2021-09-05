@@ -1,13 +1,8 @@
+import os
+
 import yaml
-from flask import g
 
 from umm.server.command import Command, CommandSet
-
-
-def get_commands():
-    if "commands" not in g:
-        g.commands = parse_commands("../ resources/commands.yaml")
-    return g.commands
 
 
 def parse_commands(path: str):
@@ -19,3 +14,9 @@ def parse_commands(path: str):
         commands.append(Command(id=k, command=v["command"], tags=v["tags"]))
 
     return CommandSet(commands)
+
+
+def get_commands():
+    dir_name = os.path.dirname(__file__)
+    commands = parse_commands(os.path.join(dir_name, "../resources/commands.yaml"))
+    return commands

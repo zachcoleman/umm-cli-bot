@@ -1,34 +1,21 @@
-from flask import g
+from umm.server.utils import get_commands
 
-from umm.server import app
-
-
-@app.teardown_appcontext
-def teardown_commands(exception):
-    commands = g.pop("commands", None)
-    if commands is not None:
-        pass
-        # write down commands
+commands = get_commands()
 
 
-@app.route("/tags")
-def tags():
-    app.get_commands()
-    return g.commands.tag_dict
+def available_tags(request):
+    return commands.tags_dict
 
 
-@app.route("/commands")
-def commands():
-    return g.commands.command_dict
+def available_commands(request):
+    return commands.command_dict
 
 
-@app.route("/command")
-def request_command():
+def request_command(request):
     # get command
     return {"command": []}
 
 
-@app.route("/confirm")
-def confirm_command():
+def confirm_command(request):
     # increment the number
     return {"recieved": True}
