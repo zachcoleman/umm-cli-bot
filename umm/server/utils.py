@@ -2,7 +2,8 @@ import os
 
 import yaml
 
-from umm.server.command import Command, CommandSet
+from umm.server.command import Command
+from umm.server.command_set import CommandSet
 
 
 def parse_commands(path: str):

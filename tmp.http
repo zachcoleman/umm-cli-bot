@@ -1,2 +1,2 @@
-GET http://0.0.0.0:8080/umm
+GET http://0.0.0.0:8080/tags?python&temp
 

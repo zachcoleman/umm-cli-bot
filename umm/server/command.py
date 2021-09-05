@@ -1,6 +1,8 @@
 import uuid
 from typing import List
 
+# TODO: switch to using pydantic model for this
+
 
 class Command:
     def __init__(
@@ -19,21 +21,3 @@ class Command:
         self.id = id if id else uuid.uuid4()
         self.freq = freq if freq else 0
         self.prompts = prompts if prompts else []
-
-
-class CommandSet:
-    def __init__(self, commands: List[Command]):
-
-        tags_dict = {}
-        for c in commands:
-            for tag in c.tags:
-                if tag in tags_dict:
-                    tags_dict[tag].append(c.id)
-                else:
-                    tags_dict[tag] = [c.id]
-
-        self.command_dict = {c.id: c for c in commands}
-        self.tags_dict = tags_dict
-
-    def get_candidates(tokens: List[str]):
-        pass

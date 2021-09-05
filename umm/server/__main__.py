@@ -6,6 +6,7 @@ from umm.server.routes import (
     confirm_command,
     request_command,
 )
+from umm.utils.config import parse_config
 
 
 def setup_routes(app):
@@ -15,6 +16,7 @@ def setup_routes(app):
     app.router.add_get("/confirm", confirm_command)
 
 
+config = parse_config()
 app = web.Application()
 setup_routes(app)
-web.run_app(app)
+web.run_app(app, port=config.port)
