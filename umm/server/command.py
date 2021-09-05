@@ -24,16 +24,16 @@ class Command:
 class CommandSet:
     def __init__(self, commands: List[Command]):
 
-        tag_dict = {}
+        tags_dict = {}
         for c in commands:
             for tag in c.tags:
-                if tag in tag_dict:
-                    tag_dict[tag].append(c.id)
+                if tag in tags_dict:
+                    tags_dict[tag].append(c.id)
                 else:
-                    tag_dict[tag] = [c.id]
+                    tags_dict[tag] = [c.id]
 
         self.command_dict = {c.id: c for c in commands}
-        self.tag_dict = tag
+        self.tags_dict = tags_dict
 
     def get_candidates(tokens: List[str]):
         pass

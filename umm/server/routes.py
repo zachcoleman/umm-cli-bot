@@ -1,21 +1,31 @@
+import json
+from functools import partial
+
+from aiohttp import web
+
 from umm.server.utils import get_commands
 
 commands = get_commands()
 
 
-def available_tags(request):
-    return commands.tags_dict
+async def available_tags(request):
+    resp_json = commands.tags_dict
+    _ = list(request.query.keys())
+    return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))
 
 
-def available_commands(request):
-    return commands.command_dict
+async def available_commands(request):
+    resp_json = commands.command_dict
+    return web.json_response(
+        resp_json, dumps=partial(json.dumps, default=vars, indent=2)
+    )
 
 
-def request_command(request):
-    # get command
-    return {"command": []}
+async def request_command(request):
+    resp_json = {"command": []}
+    return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))
 
 
-def confirm_command(request):
-    # increment the number
-    return {"recieved": True}
+async def confirm_command(request):
+    resp_json = {"recieved": True}
+    return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))

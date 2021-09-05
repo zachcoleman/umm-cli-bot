@@ -6,7 +6,6 @@ from umm.server.command import Command, CommandSet
 
 
 def parse_commands(path: str):
-    """"""
     with open(path) as f:
         comm_dict = yaml.full_load(f)
     commands = []
