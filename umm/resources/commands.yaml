@@ -1,7 +1,7 @@
 commands:
   20107b09-741b-4216-823e-82237129b34c:
     command: pwd
-    freq: 0
+    freq: 1
     id: 20107b09-741b-4216-823e-82237129b34c
     prompts: []
     tags:
@@ -9,7 +9,7 @@ commands:
     - dir
   354766df-e4ab-4293-b9dc-b1dd48236bf9:
     command: python -m pip install --upgrade $1
-    freq: 3
+    freq: 7
     id: 354766df-e4ab-4293-b9dc-b1dd48236bf9
     prompts:
     - package name

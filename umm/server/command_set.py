@@ -31,7 +31,8 @@ class CommandSet:
             [
                 (tag_count, self.command_dict[id].freq, id)
                 for id, tag_count in candidates.items()
-            ]
+            ],
+            reverse=True,
         )
 
         return [self.command_dict[id] for _, _, id in candidates_sorted]
