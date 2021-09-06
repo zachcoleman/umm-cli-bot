@@ -2,14 +2,5 @@
 CLI tool for figuring out forgotten CLI commands through search and tagging
 
 
-To get the right wheel working, gotta do:
-```
-pip install -e . 
-poetry build
-```
+https://user-images.githubusercontent.com/42484306/132243392-31f63345-177a-49f8-9636-395daaeead4f.mp4
 
-## TODO
-- add tests
-- fill out some useful commands
-- add docs
-- add deduping on CommandSet for command string
