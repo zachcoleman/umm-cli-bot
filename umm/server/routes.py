@@ -3,15 +3,10 @@ from functools import partial
 
 from aiohttp import web
 
+from umm.server.command import Command
 from umm.server.utils import get_commands
 
 commands = get_commands()
-
-
-async def available_tags(request):
-    resp_json = commands.tags_dict
-    _ = list(request.query.keys())
-    return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))
 
 
 async def available_commands(request):
@@ -27,6 +22,16 @@ async def request_command(request):
     return web.json_response(
         resp_json, dumps=partial(json.dumps, default=vars, indent=2)
     )
+
+
+async def add_command(request):
+    command = Command(
+        command=request.query.getone("command"), tags=request.query.getall("tags")
+    )
+    commands.add(command)
+    commands.write_down()
+    resp_json = {"recieved": True}
+    return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))
 
 
 async def confirm_command(request):

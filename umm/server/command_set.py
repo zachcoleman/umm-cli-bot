@@ -20,6 +20,14 @@ class CommandSet:
         self.command_dict = {c.id: c for c in commands}
         self.tags_dict = tags_dict
 
+    def add(self, command: Command):
+        self.command_dict[command.id] = command
+        for tag in command.tags:
+            if tag in self.tags_dict:
+                self.tags_dict[tag].append(command.id)
+            else:
+                self.tags_dict[tag] = [command.id]
+
     def get_candidates(self, tags: List[str]):
         candidates = {}
         for tag in tags:
@@ -40,10 +48,23 @@ class CommandSet:
     def increment_freq(self, id: str):
         self.command_dict[id].freq += 1
 
+    def max_freq(self):
+        freqs = [0]
+        for c in self.command_dict.values():
+            freqs.append(c.freq)
+        return max(freqs)
+
+    def lower_freq(self):
+        for c in self.command_dict.values():
+            c.freq = c.freq // 2
+
     def write_down(self):
         dir_name = os.path.dirname(__file__)
         tmp_file_name = os.path.join(dir_name, "../resources/tmp_commands.yaml")
         file_name = os.path.join(dir_name, "../resources/commands.yaml")
+
+        if self.max_freq() >= 100:
+            self.lower_freq()
 
         serialize_dict = dict(
             commands={id: c.__dict__ for id, c in self.command_dict.items()}

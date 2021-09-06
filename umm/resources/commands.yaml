@@ -1,4 +1,12 @@
 commands:
+  0c8b9094-2e05-4aac-894f-3619e6b87fa3:
+    command: whereis python
+    freq: 0
+    id: 0c8b9094-2e05-4aac-894f-3619e6b87fa3
+    prompts: []
+    tags:
+    - location
+    - python
   20107b09-741b-4216-823e-82237129b34c:
     command: pwd
     freq: 1
@@ -17,11 +25,3 @@ commands:
     - python
     - pip
     - update
-  c7bf17a9-6fd1-4a3b-9fb6-ee166deed9bd:
-    command: which python
-    freq: 2
-    id: c7bf17a9-6fd1-4a3b-9fb6-ee166deed9bd
-    prompts: []
-    tags:
-    - where
-    - python

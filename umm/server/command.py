@@ -18,6 +18,6 @@ class Command:
         assert len(tags) > 0, "tags length 0"
         self.command = command
         self.tags = tags
-        self.id = id if id else uuid.uuid4()
+        self.id = id if id else str(uuid.uuid4())
         self.freq = freq if freq else 0
         self.prompts = prompts if prompts else []

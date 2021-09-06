@@ -1,9 +1,11 @@
 import subprocess
 
 import click
+import requests
 from pygments import console
 
-from umm.cli.client import confirm_request, umm_request
+from umm.cli.client import add_request, confirm_request, umm_request
+from umm.server.__main__ import main
 
 
 @click.command()
@@ -12,16 +14,24 @@ from umm.cli.client import confirm_request, umm_request
 @click.argument("tags", nargs=-1)
 def umm(start, add, tags):
     if add:
-        # add simple commands
+        msg = "input command"
+        msg = console.colorize("blue", msg)
+        command = click.prompt(msg)
+
+        msg = "input tags [/-separated list]"
+        msg = console.colorize("blue", msg)
+        tags = click.prompt(msg)
+        print(add_request(command, tags.split("/")))
         return
     if start:
         print("umm server starting")
-        from umm.server.__main__ import main
-
         main()
         return
 
-    candidates = umm_request(tags)
+    try:
+        candidates = umm_request(tags)
+    except requests.exceptions.ConnectionError:
+        raise ConnectionError("can't connect to umm.server try `umm --start`")
 
     if len(candidates["commands"]) == 0:
         print("no candidate commands found")
