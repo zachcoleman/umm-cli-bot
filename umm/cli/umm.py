@@ -68,8 +68,8 @@ def umm(start, add, tags):
     # get action
     command_actions = {
         "y": ([command_str], {"shell": True}),
-        "c": ([f"echo {command_str} |pbcopy"], {"shell": True}),
-        "p": ([f"echo {command_str}"], {"shell": True}),
+        "c": ([f"echo '{command_str}' |pbcopy"], {"shell": True}),
+        "p": ([f"echo '{command_str}'"], {"shell": True}),
     }
 
     cmd, kwargs = command_actions[action_str]
