@@ -2,5 +2,9 @@
 CLI tool for figuring out forgotten CLI commands through search and tagging
 
 
-https://user-images.githubusercontent.com/42484306/132243392-31f63345-177a-49f8-9636-395daaeead4f.mp4
+https://user-images.githubusercontent.com/42484306/132243711-0181a7d2-1463-4bac-9f36-e2535bb4d8fa.mov
+
+
+
+
 
