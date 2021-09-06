@@ -7,7 +7,7 @@ from typing import List
 class Command:
     def __init__(
         self,
-        command: List[str],
+        command: str,
         tags: List[str],
         id: str = None,
         freq: int = None,

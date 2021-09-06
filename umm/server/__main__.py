@@ -16,7 +16,12 @@ def setup_routes(app):
     app.router.add_get("/confirm", confirm_command)
 
 
-config = parse_config()
-app = web.Application()
-setup_routes(app)
-web.run_app(app, port=config.port)
+def main():
+    config = parse_config()
+    app = web.Application()
+    setup_routes(app)
+    web.run_app(app, port=config.port)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,16 +1,27 @@
 commands:
   20107b09-741b-4216-823e-82237129b34c:
-    command: ["pwd"]
-    tags: ["work", "dir"]
+    command: pwd
     freq: 0
+    id: 20107b09-741b-4216-823e-82237129b34c
     prompts: []
-  c7bf17a9-6fd1-4a3b-9fb6-ee166deed9bd:
-    command: ["which python"]
-    tags: ["where", "python"]
-    freq: 0
-    prompts: []
+    tags:
+    - work
+    - dir
   354766df-e4ab-4293-b9dc-b1dd48236bf9:
-    command: ["python -m pip install --upgrade $1"]
-    tags: ["python", "pip", "update"]
-    freq: 0
-    prompts: ["package name"]
+    command: python -m pip install --upgrade $1
+    freq: 1
+    id: 354766df-e4ab-4293-b9dc-b1dd48236bf9
+    prompts:
+    - package name
+    tags:
+    - python
+    - pip
+    - update
+  c7bf17a9-6fd1-4a3b-9fb6-ee166deed9bd:
+    command: which python
+    freq: 2
+    id: c7bf17a9-6fd1-4a3b-9fb6-ee166deed9bd
+    prompts: []
+    tags:
+    - where
+    - python

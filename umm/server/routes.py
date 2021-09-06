@@ -22,10 +22,17 @@ async def available_commands(request):
 
 
 async def request_command(request):
-    resp_json = {"command": []}
-    return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))
+    tags = list(request.query.keys())
+    resp_json = {"commands": commands.get_candidates(tags)}
+    return web.json_response(
+        resp_json, dumps=partial(json.dumps, default=vars, indent=2)
+    )
 
 
 async def confirm_command(request):
+    id = request.query.get("id", None)
+    if id:
+        commands.increment_freq(id)
+        commands.write_down()
     resp_json = {"recieved": True}
     return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))

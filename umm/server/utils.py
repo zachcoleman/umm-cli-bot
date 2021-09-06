@@ -11,7 +11,7 @@ def parse_commands(path: str):
         comm_dict = yaml.full_load(f)
     commands = []
     for k, v in comm_dict["commands"].items():
-        commands.append(Command(id=k, command=v["command"], tags=v["tags"]))
+        commands.append(Command(id=k, **v))
 
     return CommandSet(commands)
 
