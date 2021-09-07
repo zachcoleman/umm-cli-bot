@@ -1,6 +1,7 @@
 import json
 from functools import partial
 
+import requests
 from aiohttp import web
 
 from umm.server.command import Command
@@ -9,14 +10,26 @@ from umm.server.utils import get_commands
 commands = get_commands()
 
 
-async def available_commands(request):
+async def available_commands(request: requests.request):
+    """
+    Args:
+        request: http request
+    Returns:
+        response json of all commands
+    """
     resp_json = commands.command_dict
     return web.json_response(
         resp_json, dumps=partial(json.dumps, default=vars, indent=2)
     )
 
 
-async def request_command(request):
+async def request_command(request: requests.request):
+    """
+    Args:
+        request: http request
+    Returns:
+        response json of queried commands
+    """
     tags = list(request.query.keys())
     resp_json = {"commands": commands.get_candidates(tags)}
     return web.json_response(
@@ -24,7 +37,13 @@ async def request_command(request):
     )
 
 
-async def add_command(request):
+async def add_command(request: requests.request):
+    """
+    Args:
+        request: http request with data for command to add
+    Returns:
+        response json to confirm added command
+    """
     command = Command(
         command=request.query.getone("command"), tags=request.query.getall("tags")
     )
@@ -34,7 +53,13 @@ async def add_command(request):
     return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))
 
 
-async def confirm_command(request):
+async def confirm_command(request: requests.request):
+    """
+    Args:
+        request: http request with confirmed id
+    Returns:
+        response json to confirm added command
+    """
     id = request.query.get("id", None)
     if id:
         commands.increment_freq(id)

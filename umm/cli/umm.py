@@ -1,4 +1,5 @@
 import subprocess
+from typing import List
 
 import click
 import requests
@@ -12,7 +13,15 @@ from umm.server.__main__ import main
 @click.option("--start", "-s", is_flag=True)
 @click.option("--add", is_flag=True)
 @click.argument("tags", nargs=-1)
-def umm(start, add, tags):
+def umm(start: bool, add: bool, tags: List[str]):
+    """
+    Args:
+        start:
+        add:
+        tags:
+    Returns:
+        None
+    """
     if add:
         msg = "input command"
         msg = console.colorize("blue", msg)

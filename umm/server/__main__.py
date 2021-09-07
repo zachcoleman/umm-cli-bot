@@ -9,7 +9,7 @@ from umm.server.routes import (
 from umm.utils.config import parse_config
 
 
-def setup_routes(app):
+def setup_routes(app: web.Application):
     app.router.add_get("/commands", available_commands)
     app.router.add_get("/add", add_command)
     app.router.add_get("/umm", request_command)

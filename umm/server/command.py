@@ -5,6 +5,23 @@ from typing import List
 
 
 class Command:
+    """
+    Args:
+        command: command string
+        tags: list of strings to tag command
+        id: uuid4 string identifier
+        freq: integer for tracking frequency of command use
+        prompts: list of strings to prompt user for
+
+    Attributes:
+        command: command string
+        tags: list of strings to tag command
+        id: uuid4 string identifier
+        freq: integer for tracking frequency of command use
+        prompts: list of strings to prompt user for
+
+    """
+
     def __init__(
         self,
         command: str,

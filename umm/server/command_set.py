@@ -7,8 +7,16 @@ from umm.server.command import Command
 
 
 class CommandSet:
-    def __init__(self, commands: List[Command]):
+    """
+    Args:
+        commands: list of commands to manage as set
 
+    Attributes:
+        command_dict: dictionary for accessing the commands by id
+        tag_dict: dictionary mapping tags to commands
+    """
+
+    def __init__(self, commands: List[Command]):
         tags_dict = {}
         for c in commands:
             for tag in c.tags:
@@ -21,6 +29,12 @@ class CommandSet:
         self.tags_dict = tags_dict
 
     def add(self, command: Command):
+        """
+        Args:
+            command: Command to be added to object
+        Returns:
+            None
+        """
         self.command_dict[command.id] = command
         for tag in command.tags:
             if tag in self.tags_dict:
@@ -29,6 +43,12 @@ class CommandSet:
                 self.tags_dict[tag] = [command.id]
 
     def get_candidates(self, tags: List[str]):
+        """
+        Args:
+            tags: list of strings to query for commands with
+        Returns:
+            None
+        """
         candidates = {}
         for tag in tags:
             command_ids = self.tags_dict.get(tag, [])
@@ -46,19 +66,43 @@ class CommandSet:
         return [self.command_dict[id] for _, _, id in candidates_sorted]
 
     def increment_freq(self, id: str):
+        """
+        Args:
+            id: command id to increment freq for
+        Returns:
+            None
+        """
         self.command_dict[id].freq += 1
 
     def max_freq(self):
+        """
+        Args:
+            None
+        Returns:
+            max `freq` of `Command`s
+        """
         freqs = [0]
         for c in self.command_dict.values():
             freqs.append(c.freq)
         return max(freqs)
 
     def lower_freq(self):
+        """
+        Args:
+            None
+        Returns:
+            None
+        """
         for c in self.command_dict.values():
             c.freq = c.freq // 2
 
     def write_down(self):
+        """
+        Args:
+            None
+        Returns:
+            None
+        """
         dir_name = os.path.dirname(__file__)
         tmp_file_name = os.path.join(dir_name, "../resources/tmp_commands.yaml")
         file_name = os.path.join(dir_name, "../resources/commands.yaml")
