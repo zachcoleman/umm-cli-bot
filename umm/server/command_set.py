@@ -103,8 +103,10 @@ class CommandSet:
         Returns:
             None
         """
-        tmp_file_name = "~/.umm/tmp_commands.yaml"
-        file_name = "~/.umm/commands.yaml"
+        root = os.path.expanduser("~")
+        target_folder = os.path.join(root, ".umm")
+        tmp_file_name = os.path.join(target_folder, "tmp_commands.yaml")
+        file_name = os.path.join(target_folder, "commands.yaml")
 
         if self.max_freq() >= 100:
             self.lower_freq()
