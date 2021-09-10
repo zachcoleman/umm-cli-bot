@@ -47,15 +47,18 @@ def umm(start: bool, add: bool, tags: List[str]):
         return
 
     for command in candidates["commands"]:
-        msg = f"{command['command']} [y/n/c/p]?"
+        msg = f"{command['command']} [y/n/c/p/q]?"
         msg = console.colorize("green", msg)
         action_str = click.prompt(msg, default="y")
 
-        while action_str not in ["y", "n", "c", "p"]:
-            print("invalid input. use [y/n/c/p]")
+        while action_str not in ["y", "n", "c", "p", "q"]:
+            print("invalid input. use [y/n/c/p/q]")
             action_str = click.prompt(msg, default="y")
 
-        if action_str != "n":
+        # continue and exit conditions
+        if action_str == "q":
+            return
+        elif action_str != "n":
             break
 
     # no candidate command selected found

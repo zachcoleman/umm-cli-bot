@@ -1,5 +1,3 @@
-import os
-
 import yaml
 
 from umm.server.command import Command
@@ -29,6 +27,5 @@ def get_commands():
     Returns:
         CommandSet built from set resources path
     """
-    dir_name = os.path.dirname(__file__)
-    commands = parse_commands(os.path.join(dir_name, "../resources/commands.yaml"))
+    commands = parse_commands("~/.umm/commands.yaml")
     return commands

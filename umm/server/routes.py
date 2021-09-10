@@ -5,12 +5,10 @@ import requests
 from aiohttp import web
 
 from umm.server.command import Command
-from umm.server.utils import get_commands
-
-commands = get_commands()
+from umm.server.command_set import CommandSet
 
 
-async def available_commands(request: requests.request):
+async def available_commands(request: requests.request, commands: CommandSet):
     """
     Args:
         request: http request
@@ -23,7 +21,7 @@ async def available_commands(request: requests.request):
     )
 
 
-async def request_command(request: requests.request):
+async def request_command(request: requests.request, commands: CommandSet):
     """
     Args:
         request: http request
@@ -37,7 +35,7 @@ async def request_command(request: requests.request):
     )
 
 
-async def add_command(request: requests.request):
+async def add_command(request: requests.request, commands: CommandSet):
     """
     Args:
         request: http request with data for command to add
@@ -53,7 +51,7 @@ async def add_command(request: requests.request):
     return web.json_response(resp_json, dumps=partial(json.dumps, indent=2))
 
 
-async def confirm_command(request: requests.request):
+async def confirm_command(request: requests.request, commands: CommandSet):
     """
     Args:
         request: http request with confirmed id

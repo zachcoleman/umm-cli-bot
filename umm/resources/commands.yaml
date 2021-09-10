@@ -61,3 +61,14 @@ commands:
     - dict
     - check
     - key
+  5d503c66-eff4-4982-8b7c-789d0c67d928:
+    command: pip freeze > unins && pip uninstall -y -r unins && rm unins
+    freq: 0
+    id: 5d503c66-eff4-4982-8b7c-789d0c67d928
+    prompts: []
+    tags:
+    - pip
+    - uninstall
+    - all
+    - remove
+    - package
