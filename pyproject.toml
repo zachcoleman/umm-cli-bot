@@ -4,7 +4,7 @@ packages = [
     { include = "umm" },
     { include = "umm/**/*.py" },
 ]
-version = "0.2.0"
+version = "0.3.0"
 description = "CLI tool for figuring out forgotten CLI commands through search and tagging"
 authors = ["Zachary Coleman <zacharywcoleman@gmail.com>"]
 license = "MIT License"
