@@ -1,0 +1,28 @@
+name: CICD
+on: [push]
+jobs:
+  CICD:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+    steps:
+      - name: intro message 
+        run: echo "CICD -- triggered by a ${{ github.event_name }} event to ${{ github.ref }} running on ${{ runner.os }} server"
+      - name: set up python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: install poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+      - name: check out repository code
+        uses: actions/checkout@v2
+      - name: list files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: install repo
+        run: poetry install
+      - name: run tests
+        run: poetry run python -m pytest --cov=umm tests/
+      
