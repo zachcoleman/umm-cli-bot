@@ -8,14 +8,14 @@ class Config(BaseModel):
     port: int
 
 
-def parse_config() -> Config:
+def parse_config(root: str = None) -> Config:
     """
     Args:
         None
     Returns:
         Config built from set resources path
     """
-    dir_name = os.path.dirname(__file__)
-    with open(os.path.join(dir_name, "../resources/config.yaml")) as f:
+    root = root if root else os.path.expanduser("~")
+    with open(os.path.join(root, ".umm/config.yaml")) as f:
         config = yaml.full_load(f)
     return Config.parse_obj(config)
