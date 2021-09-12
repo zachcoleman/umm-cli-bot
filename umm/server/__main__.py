@@ -1,5 +1,3 @@
-import os
-import shutil
 from functools import partial
 
 from aiohttp import web
@@ -11,18 +9,8 @@ from umm.server.routes import (
     confirm_command,
     request_command,
 )
-from umm.server.utils import parse_commands
+from umm.server.utils import setup_folder
 from umm.utils.config import parse_config
-
-
-def setup_folder():
-    root = os.path.expanduser("~")
-    target_folder = os.path.join(root, ".umm")
-    if not os.path.isdir(target_folder):
-        shutil.copytree(
-            os.path.join(os.path.dirname(__file__), "../resources/"), target_folder
-        )
-    return parse_commands(os.path.join(target_folder, "commands.yaml"))
 
 
 def setup_routes(app: web.Application, commands: CommandSet):
