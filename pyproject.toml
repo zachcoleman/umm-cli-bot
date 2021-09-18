@@ -4,10 +4,11 @@ packages = [
     { include = "umm" },
     { include = "umm/**/*.py" },
 ]
-version = "0.3.0"
+version = "0.4.0"
 description = "CLI tool for figuring out forgotten CLI commands through search and tagging"
 authors = ["Zachary Coleman <zacharywcoleman@gmail.com>"]
 license = "MIT License"
+homepage = "https://github.com/zachcoleman/umm-cli-helper"
 
 [tool.poetry.scripts]
 umm = "umm.cli:umm"
