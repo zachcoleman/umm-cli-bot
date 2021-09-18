@@ -1,11 +1,11 @@
-name: CICD
+name: tests
 on: 
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 jobs:
-  CICD:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -13,7 +13,7 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
     steps:
       - name: intro message 
-        run: echo "CICD -- triggered by a ${{ github.event_name }} event to ${{ github.ref }} running on ${{ runner.os }} server"
+        run: echo "tests -- triggered by a ${{ github.event_name }} event to ${{ github.ref }} running on ${{ runner.os }} server"
       - name: set up python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
