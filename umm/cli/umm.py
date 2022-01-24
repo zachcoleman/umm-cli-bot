@@ -11,9 +11,10 @@ from umm.server.__main__ import main
 
 @click.command()
 @click.option("--start", "-s", is_flag=True)
+@click.option("--stop", is_flag=True)
 @click.option("--add", is_flag=True)
 @click.argument("tags", nargs=-1)
-def umm(start: bool, add: bool, tags: List[str]):
+def umm(start: bool, stop: bool, add: bool, tags: List[str]):
     """
     Args:
         start:
@@ -35,6 +36,31 @@ def umm(start: bool, add: bool, tags: List[str]):
     if start:
         print("umm server starting")
         main()
+        return
+    if stop:
+        print("umm server stopping")
+        import psutil
+
+        from umm.utils.config import parse_config
+
+        config = parse_config()
+
+        # find and kill pid(s)
+        pids = set()
+        for proc in psutil.process_iter():
+            if "python" in proc.name().lower():
+                if proc.connections():
+                    conns = proc.connections()
+                    for conn in conns:
+                        if conn.laddr.port == config.port:
+                            pids.add(proc.pid)
+        for pid in pids:
+            subprocess.run(["kill", f"{pid}"])
+
+        # if no pids were found
+        if not pids:
+            print("Could not find running server")
+
         return
 
     try:
