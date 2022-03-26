@@ -23,6 +23,17 @@ def parse_commands(pth: str):
     return CommandSet(commands)
 
 
+def setup_config(root: str = None):
+    root = root if root else os.path.expanduser("~")
+    target_folder = os.path.join(root, ".umm")
+    if not os.path.isdir(target_folder):
+        os.makedirs(target_folder)
+        shutil.copy(
+            os.path.join(os.path.dirname(__file__), "../resources/config.yaml"),
+            os.path.join(target_folder, "config.yaml"),
+        )
+
+
 def setup_folder(root: str = None):
     root = root if root else os.path.expanduser("~")
     target_folder = os.path.join(root, ".umm")
