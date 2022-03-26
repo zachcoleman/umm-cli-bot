@@ -1,5 +1,0 @@
-todo:
-- add tests
-- fill out some useful commands
-- add docs
-- add deduping on CommandSet for command string
